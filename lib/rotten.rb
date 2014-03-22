@@ -34,19 +34,20 @@ class Rotten
 
   def parse results
     json = MultiJson.load results
+    return_hash = {}
     movie = json["movies"][0]
-    title = movie["title"]
-    year = movie["year"]
-    consensus = movie["critics_consensus"]
-    critics_rating = movie["ratings"]["critics_rating"]
-    critics_score = movie["ratings"]["critics_score"]
+    return_hash[:url] = "http://rottentomatoes.com/m/#{movie["id"]}"
+    return_hash[:title] = movie["title"]
+    return_hash[:year] = movie["year"]
+    return_hash[:consensus] = movie["critics_consensus"]
+    return_hash[:critics_rating] = movie["ratings"]["critics_rating"]
+    return_hash[:critics_score] = movie["ratings"]["critics_score"]
 
-    puts "### #{title} (#{year})"
-    puts "#{critics_rating} #{critics_score}%"
-    puts "#{consensus}"
-    puts
+    puts "### #{return_hash[:title]} (#{return_hash[:year]})"
+    puts "#{return_hash[:critics_rating]} #{return_hash[:critics_score]}%"
+    puts "#{return_hash[:consensus]}"
 
-    [title, year, consensus, critics_rating, critics_score]
+    return_hash
   rescue NoMethodError => e
     puts "Boo #{movie}"
     puts results

@@ -1,10 +1,10 @@
 <% if session[:movies] %>
   <% session[:movies].each do |movie| %>
-    <% if movie.is_a? Array %>
+    <% if movie.is_a? Hash %>
       <div>
-        <strong><%= movie[0] %> (<%= movie[1] %>)</strong>
-        <p><%= movie[3] %> <%= movie[4] %>%</p>
-        <p><%= movie[2] %></p>
+        <strong><a href="<%= movie[:url] %>"><%= movie[:title] %> (<%= movie[:year] %>)</a></strong>
+        <p><%= movie[:critics_rating] %> <%= movie[:critics_score] %>%</p>
+        <p><%= movie[:consensus] %></p>
         <p></p>
       </div>
     <% end %>
