@@ -1,0 +1,10 @@
+<% if session[:movies] %>
+  <% session[:movies].each do |movie| %>
+    <div>
+      <strong><%= movie[0] %> (<%= movie[1] %>)</strong>
+    <p><%= movie[3] %> <%= movie[4] %>%</p>
+    <p><%= movie[2] %></p>
+    <p></p>
+  </div>
+  <% end %>
+<% end %>
