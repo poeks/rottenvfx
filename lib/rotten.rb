@@ -1,7 +1,7 @@
 class Rotten
 
   def initialize
-    @limit = 156
+    @limit = 155
     @conn = Faraday.new(:url => CONFIG["rotten_url"]) do |faraday|
       faraday.request  :url_encoded
       #faraday.response :logger
