@@ -1,1 +1,2 @@
 rotten_key: your-rotten-key
+database: 'postgres://you@localhost/rottenvfx'

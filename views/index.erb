@@ -1,12 +1,13 @@
-<% if session[:movies] %>
-  <% session[:movies].each do |movie| %>
-    <% if movie.is_a? Hash %>
-      <div>
-        <strong><a href="<%= movie[:url] %>"><%= movie[:title] %> (<%= movie[:year] %>)</a></strong>
-        <p><%= movie[:critics_rating] %> <%= movie[:critics_score] %>%</p>
-        <p><%= movie[:consensus] %></p>
-        <p></p>
-      </div>
-    <% end %>
+<% if @movies %>
+  <% @movies.each do |movie| %>
+
+    <h3>
+      <a href="<%= movie.url %>"><%= movie.title %> (<%= movie.year %>)</a>
+    </h3>
+
+    <p><strong><%= movie.critics_rating %> <%= movie.critics_score %>%</strong></p>
+
+    <p><%= movie.consensus %></p>
+
   <% end %>
 <% end %>

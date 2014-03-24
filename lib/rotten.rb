@@ -12,24 +12,46 @@ class Rotten
   def go movies
     results = []
     movies.each_with_index do |movie, i|
-      return results if i >= @limit
-      results << search(movie)
-      sleep 1
+      if i < @limit
+        results << search(movie)
+        sleep 1
+      end
     end
 
-    results
+    save results
+  end
+
+  def save movies
+
+    puts "Saving Movies"
+    movies.each do |movie|
+      if movie and movie.is_a? Hash
+        puts movie
+        obj = Movie.new movie
+        if obj.valid?
+          obj.save
+        end
+      else
+        puts "No movie! #{movie}"
+      end
+    end
+
   end
 
   #?q={search-term}&page_limit={results-per-page}&page={page-number}"}
-  def search movie
+  def fetch movie
     params = {
       apikey: KEY["rotten_key"],
       q: movie,
-      page_limit: 1,
+      page_limit: 5,
       page: 1
     }
     results = @conn.get CONFIG["rotten_path"], params
-    parse results.body
+    results.body
+  end
+
+  def search movie
+    parse fetch movie
   end
 
   def parse results

@@ -1,3 +1,6 @@
 gem 'sinatra'
 gem 'faraday'
 gem 'multi_json'
+gem 'sequel'
+gem 'pg'
+gem 'rake'
